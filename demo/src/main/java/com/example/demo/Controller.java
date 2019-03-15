@@ -49,6 +49,6 @@ public class Controller {
 	String borrar(@PathVariable int id) {
 		gestor=Data.buscar(id, gestores);
 		gestores.remove(gestor);
-		return "No Eliminó el gestor";
+		return "Se eliminó el gestor";
 	}
 }
