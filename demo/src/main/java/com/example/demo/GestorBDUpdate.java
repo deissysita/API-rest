@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GestorBD {
-int id;
+public class GestorBDUpdate {
+
 String nombre;
 }
