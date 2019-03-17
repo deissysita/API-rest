@@ -29,26 +29,18 @@ public class Controller {
 
 	@GetMapping("/get/{id}")
 	GestorBD uno(@PathVariable int id) {
-		return Data.buscar(id, gestores);
+		return gestores.stream().filter(gestorByid->gestorByid.getId()==id).findAny().orElse(null);
 	}
 
 	@PutMapping("/put/{id}")
-	String modificar(@RequestBody GestorBDUpdate upGestor, @PathVariable int id) {
-		gestor=Data.buscar(id, gestores);
-		if(gestor!=null) {
-			gestores.remove(gestor);
-			gestor.setNombre(upGestor.getNombre());
-			gestores.add(gestor);
-			return "Se modificó el gestor";
-		}else {
-			return "No existe el gestor";
-		}
+	List<GestorBD> modificar(@RequestBody GestorBDUpdate upGestor, @PathVariable int id) {
+		gestores.stream().filter(gestorByid->gestorByid.getId()==id).forEach(gestorByid->gestorByid.setNombre(upGestor.getNombre()));
+		return gestores;
 	}
 
 	@DeleteMapping("/del/{id}")
-	String borrar(@PathVariable int id) {
-		gestor=Data.buscar(id, gestores);
-		gestores.remove(gestor);
-		return "Se eliminó el gestor";
+	List<GestorBD> borrar(@PathVariable int id) {
+		gestores.removeIf(gestor->gestor.getId()==id);
+		return gestores;
 	}
 }

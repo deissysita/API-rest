@@ -14,13 +14,5 @@ public class Data {
 		gestores.add(new GestorBD(5,"MS Access"));
 		return gestores;
 	}
-	
-	static GestorBD buscar(int id,List<GestorBD> listado) {
-		for(GestorBD gestor:listado) {
-			if(gestor.getId()==id) {
-				return gestor;
-			}
-		}
-		return null;
-	}
+
 }
